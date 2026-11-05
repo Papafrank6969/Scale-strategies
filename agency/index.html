@@ -224,12 +224,64 @@
             <li>I show you the offer and ads I'd run for your shop.</li>
             <li>You get a straight answer on whether ads fit your shop.</li>
           </ul>
-          <div class="cal-mobile">
-            <a class="btn" href="https://calendly.com/frank-tryscalestrategies" data-cta data-cal-link>Book my free shop audit</a>
-          </div>
-          <p class="fallback">Calendar not loading? <a href="https://calendly.com/frank-tryscalestrategies" data-cal-link target="_blank" rel="noopener">Open it on Calendly</a>.</p>
         </div>
-        <div class="cal-inline" id="cal-inline" role="region" aria-label="Booking calendar"></div>
+
+        <div class="booking">
+          <!-- Step 1: qualify. Answers are passed into Calendly (a1-a5), so add the same 5 questions there, in this order. -->
+          <form class="qualify" id="qualify" novalidate>
+            <p class="q-intro"><strong>Quick check first.</strong> 5 taps, about 20 seconds, so we don't waste each other's time.</p>
+            <fieldset>
+              <legend>What kind of shop do you run?</legend>
+              <div class="opts">
+                <label><input type="radio" name="shop" value="Repair"> Repair</label>
+                <label><input type="radio" name="shop" value="Collision &amp; body"> Collision &amp; body</label>
+                <label><input type="radio" name="shop" value="Tint, PPF &amp; ceramic"> Tint, PPF &amp; ceramic</label>
+                <label><input type="radio" name="shop" value="Detailing"> Detailing</label>
+                <label><input type="radio" name="shop" value="Tires"> Tires</label>
+                <label><input type="radio" name="shop" value="Other"> Other</label>
+              </div>
+            </fieldset>
+            <fieldset data-need="yes" data-no="li">
+              <legend>Is your shop in Nassau or Suffolk County?</legend>
+              <div class="opts"><label><input type="radio" name="li" value="yes"> Yes</label><label><input type="radio" name="li" value="no"> No</label></div>
+            </fieldset>
+            <fieldset data-need="yes" data-no="room">
+              <legend>Do you have bay time for 10+ more jobs next month?</legend>
+              <div class="opts"><label><input type="radio" name="room" value="yes"> Yes</label><label><input type="radio" name="room" value="no"> Not right now</label></div>
+            </fieldset>
+            <fieldset data-need="yes" data-no="speed">
+              <legend>Can someone call new leads back within about an hour during business hours?</legend>
+              <div class="opts"><label><input type="radio" name="speed" value="yes"> Yes</label><label><input type="radio" name="speed" value="no"> Not usually</label></div>
+            </fieldset>
+            <fieldset data-need="yes" data-no="budget">
+              <legend>Are you ready to invest $1,000+ a month to fill your bays?</legend>
+              <p class="hint">That covers your ad budget, paid straight to Meta, plus my management.</p>
+              <div class="opts"><label><input type="radio" name="budget" value="yes"> Yes</label><label><input type="radio" name="budget" value="no"> Not yet</label></div>
+            </fieldset>
+            <p class="q-error" role="alert" hidden></p>
+            <button class="btn" type="submit">Book my free shop audit</button>
+          </form>
+
+          <!-- Step 2a: qualified. Desktop gets the inline calendar here; phones get the popup. -->
+          <div class="q-result" id="q-yes" hidden>
+            <h3 tabindex="-1">You're a fit. Pick a time below.</h3>
+            <div class="cal-inline" id="cal-inline" role="region" aria-label="Booking calendar"></div>
+            <a class="btn cal-mobile" href="https://calendly.com/frank-tryscalestrategies" data-cal-link data-popup>Book my free shop audit</a>
+            <p class="fallback">Calendar not loading? <a href="https://calendly.com/frank-tryscalestrategies" data-cal-link target="_blank" rel="noopener">Open it on Calendly</a>.</p>
+          </div>
+
+          <!-- Step 2b: not a fit right now. The message depends on the first "no". -->
+          <div class="q-result" id="q-no" hidden>
+            <h3 tabindex="-1">Probably not the right time.</h3>
+            <p data-msg="li" hidden>Right now I only work with shops on Long Island, so I'd be the wrong pick for you.</p>
+            <p data-msg="room" hidden>Sounds like your bays are already full. Good problem to have. Email me when you've got room.</p>
+            <p data-msg="speed" hidden>The guarantee only works when leads get called back fast. Once someone can do that, email me and we'll talk.</p>
+            <p data-msg="budget" hidden>Under $1,000 a month, I can't promise you 10 booked jobs, and I won't take your money on a guarantee I can't keep. Email me when the timing's better.</p>
+            <p class="fallback"><a href="mailto:frank@tryscalestrategies.com?subject=Shop%20audit">frank@tryscalestrategies.com</a> &middot; <button type="button" class="linkish" id="q-back">Change my answers</button></p>
+          </div>
+
+          <noscript><p class="fallback">This check needs JavaScript. <a href="https://calendly.com/frank-tryscalestrategies">Book on Calendly instead</a>.</p></noscript>
+        </div>
       </div>
     </section>
   </main>

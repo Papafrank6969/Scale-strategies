@@ -13,6 +13,13 @@ tools/             build-client.mjs (builds a shop), sync-tokens.mjs (copies tok
 - `agency/index.html`, `agency/agency.css`, `agency/main.js` (3.9KB), `agency/fonts/`. No build step.
 - One offer, one CTA: **Book my free shop audit**. On desktop it scrolls to `#audit` (inline Calendly, lazy-loaded). On phones it opens the Calendly popup. Without JS it falls back to plain Calendly links.
 - `/book` forwards to `/#audit` so old links keep working. `/services` 301s to `/`. `/gyms` uses the old stylesheet (`agency/style.css`) and is linked only in the footer.
+- **Qualifying check:** before the calendar shows, visitors answer 5 questions (shop type, on Long Island, bay time for 10+ jobs, can call leads back within an hour, ready for $1,000+/month). Any "no" gets a polite not-a-fit message plus your email. Passing answers are sent into Calendly as `a1`–`a5`.
+- **Set up the same questions in Calendly** (Event type → Booking page options → Invitee questions), in this exact order, so the answers fill in and anyone using the raw Calendly link still has to answer them:
+  1. What kind of shop do you run? (one line)
+  2. Is your shop in Nassau or Suffolk County? (Yes / No)
+  3. Do you have bay time for 10+ more jobs next month? (Yes / No)
+  4. Can someone call new leads back within about an hour during business hours? (Yes / No)
+  5. Are you ready to invest $1,000+ a month to fill your bays (ad budget plus management)? (Yes / No)
 - Fill in every `TODO(Frank)`: `grep -rn "TODO(Frank)" agency/`
 - **Changing colors or type?** Edit `shared/tokens.css`, then run `node tools/sync-tokens.mjs`. Don't edit the tokens block inside `agency/agency.css` by hand.
 - Before deploying, copy your existing `demo.html` into `agency/` (the gyms page links to `/demo`). It already works with `agency/style.css`.

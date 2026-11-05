@@ -219,12 +219,37 @@ img.avatar { object-fit: cover; }
 .audit-grid { display: grid; gap: var(--s6); align-items: start; }
 @media (min-width: 768px) { .audit-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s7); } }
 .audit-sub { color: var(--muted); margin: var(--s5) 0 var(--s4); }
-.cal-mobile { margin-top: var(--s6); }
 .fallback { margin-top: var(--s4); font-size: var(--fs-small); color: var(--muted); }
+.fallback a, .linkish { color: var(--text); }
+.linkish { background: none; border: 0; padding: 0; font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+
+/* Qualifying questions */
+.booking { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: var(--s5); }
+@media (min-width: 768px) { .booking { padding: var(--s6); } }
+.qualify { display: grid; gap: var(--s5); }
+.q-intro { color: var(--muted); }
+.q-intro strong { color: var(--text); }
+.qualify fieldset { border: 0; min-width: 0; }
+.qualify legend { font-weight: 700; margin-bottom: var(--s3); padding: 0; }
+.hint { color: var(--muted); font-size: var(--fs-small); margin: calc(-1 * var(--s2)) 0 var(--s3); }
+.opts { display: flex; flex-wrap: wrap; gap: var(--s2); }
+.opts label {
+  display: inline-flex; align-items: center; gap: var(--s2); min-height: 48px; padding: var(--s2) var(--s4);
+  border: 1px solid var(--border-strong); border-radius: var(--radius-btn); cursor: pointer; background: var(--bg);
+}
+.opts label:has(input:checked) { background: var(--surface-2); border-color: var(--text); }
+.opts input { width: 18px; height: 18px; accent-color: var(--text); margin: 0; }
+.qualify fieldset[aria-invalid="true"] legend { text-decoration: underline wavy #F87171; text-underline-offset: 6px; }
+.q-error { color: #FCA5A5; font-weight: 600; }
+.q-result h3 { margin-bottom: var(--s4); }
+.q-result h3:focus { outline: none; }
+.q-result p { color: var(--muted); }
+#q-no p[data-msg] { color: var(--text); font-size: var(--fs-lead); }
+
 .cal-inline { display: none; }
 @media (min-width: 768px) {
   .cal-mobile { display: none; }
-  .cal-inline { display: block; min-height: 700px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); overflow: hidden; }
+  .cal-inline { display: block; min-height: 700px; margin-inline: calc(-1 * var(--s6)); }
   .cal-inline .calendly-inline-widget, .cal-inline iframe { width: 100%; height: 700px; }
 }
 
