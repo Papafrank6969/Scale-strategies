@@ -206,6 +206,14 @@ img.avatar { object-fit: cover; }
 .report td { white-space: nowrap; }
 .status { color: var(--muted); font-weight: 600; }
 .status.booked { color: var(--ok); }
+@media (max-width: 479px) {
+  .report th, .report td { padding: 10px 8px; font-size: .875rem; }
+  .report th:first-child, .report td:first-child { padding-left: var(--s4); }
+  .report th:last-child, .report td:last-child { padding-right: var(--s4); }
+  .report td { white-space: normal; }
+  .report td:last-child { white-space: nowrap; }
+  .report caption, .report-foot { padding-inline: var(--s4); }
+}
 .report-foot { padding: var(--s4) var(--s5); border-top: 1px solid var(--border); font-size: var(--fs-small); color: var(--muted); }
 
 /* Fit */
@@ -298,3 +306,5 @@ img.avatar { object-fit: cover; }
   .sticky .btn { width: 100%; }
   .sticky p { text-align: center; font-size: var(--fs-small); color: var(--muted); margin: 6px auto 0; }
 }
+
+@media (max-width: 479px) { .report-foot { padding-inline: var(--s4); } }
