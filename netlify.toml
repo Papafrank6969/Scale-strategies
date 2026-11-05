@@ -1,0 +1,12 @@
+# Agency site (tryscalestrategies.com). Static, no build step.
+# Client sites are NOT deployed from here. Build them with tools/build-client.mjs
+# and deploy each dist/<slug> folder to its own Netlify site (see README).
+[build]
+  publish = "site"
+  command = ""
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

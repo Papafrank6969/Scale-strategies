@@ -1,0 +1,104 @@
+{
+  "slug": "example-auto",
+  "vertical": "auto",
+  "demo": true,
+
+  "business": {
+    "name": "Example Auto & Collision",
+    "shortName": "Example Auto",
+    "schemaType": "AutoRepair",
+    "phone": "(516) 555-0142",
+    "email": "",
+    "address": { "street": "100 Example Street", "city": "Massapequa", "state": "NY", "zip": "11758" },
+    "mapsQuery": "Massapequa, NY 11758",
+    "googleMapsUrl": "",
+    "googleReviewsUrl": "",
+    "bookingUrl": "",
+    "logo": "",
+    "license": "NYS DMV Repair Shop #REPLACE",
+    "serviceArea": ["Massapequa", "Seaford", "Wantagh", "Amityville", "Farmingdale"]
+  },
+
+  "site": {
+    "url": "",
+    "title": "Example Auto & Collision | Auto Repair & Body Shop in Massapequa, NY",
+    "description": "Brakes, diagnostics, collision and inspections in Massapequa. Straight quotes, warrantied work. Call (516) 555-0142 or get a free quote online."
+  },
+
+  "theme": { "accent": "#E11D2E", "accentInk": "#FFFFFF", "dark": "#111318" },
+
+  "hero": {
+    "eyebrow": "Massapequa, NY · Repair & collision",
+    "headline": "Brakes, diagnostics & collision. *Done right the first time.*",
+    "sub": "Straight quotes before we touch your car, and most repairs back the same or next day. Call now or get a free quote in 30 seconds.",
+    "image": ""
+  },
+
+  "badges": ["NYS inspection station", "Warranty on parts & labor", "Free estimates", "All insurance claims"],
+
+  "offer": {
+    "label": "This month",
+    "title": "$49 brake inspection. *Free if we do the job.*",
+    "details": "Squealing, grinding or a soft pedal? We'll measure your pads and rotors, show you what we find, and give you a straight price.",
+    "cta": "Claim the $49 inspection",
+    "fine": "Example offer. Match this to the shop's live Facebook and Instagram ad so the page says exactly what the ad promised."
+  },
+
+  "servicesHeadline": "What we *fix*",
+  "services": [
+    { "name": "Brakes", "desc": "Pads, rotors, calipers and brake lines. Quiet, safe stops.", "price": "Inspection $49" },
+    { "name": "Check engine & diagnostics", "desc": "We find the real cause before we replace a single part.", "price": "" },
+    { "name": "Collision & body", "desc": "Dents, bumpers and frame work. We work with every insurance company.", "price": "Free estimates" },
+    { "name": "NYS inspections", "desc": "Safety and emissions while you wait.", "price": "" },
+    { "name": "Suspension & steering", "desc": "Shocks, struts, alignments and that clunk over bumps.", "price": "" },
+    { "name": "Oil & maintenance", "desc": "Factory-schedule service that keeps your warranty valid.", "price": "" }
+  ],
+
+  "whyHeadline": "Why drivers *come back*",
+  "why": [
+    { "title": "Price before work", "text": "You approve the quote first. No surprise line items when you pick up." },
+    { "title": "Show, don't tell", "text": "Photos of the worn parts, so you see what we see." },
+    { "title": "Fast turnaround", "text": "Most repairs are back the same or next business day." }
+  ],
+
+  "reviews": {
+    "headline": "What drivers *say*",
+    "rating": "",
+    "count": "",
+    "googleUrl": "",
+    "items": [
+      { "quote": "REPLACE with a real Google review. Keep it under 30 words and make sure it names the job (brakes, collision, tint).", "author": "Customer first name, Town" },
+      { "quote": "REPLACE with a second real Google review. Never write or edit reviews yourself.", "author": "Customer first name, Town" }
+    ]
+  },
+
+  "form": {
+    "enabled": true,
+    "headline": "Tell us what your car *needs*.",
+    "promise": "We call you back within an hour during business hours with a price and a time.",
+    "button": "Get my free quote",
+    "thanks": "Your request went straight to the shop. We call back within an hour during business hours. If it's urgent, call now."
+  },
+
+  "locationHeadline": "Find us in *Massapequa*",
+  "hours": [
+    { "days": "Monday – Friday", "time": "8:00 AM – 6:00 PM", "schema": "Mo-Fr 08:00-18:00" },
+    { "days": "Saturday", "time": "8:00 AM – 2:00 PM", "schema": "Sa 08:00-14:00" },
+    { "days": "Sunday", "time": "Closed", "schema": "" }
+  ],
+
+  "faqHeadline": "Good to *know*",
+  "faq": [
+    { "q": "Do I need an appointment?", "a": "Walk-ins are welcome for inspections and quick checks. For repairs, call or send a quote request and we'll give you a drop-off time." },
+    { "q": "Will you give me a price before you start?", "a": "Always. Nothing gets done until you approve the quote." },
+    { "q": "Do you work with my insurance?", "a": "Yes. We handle collision claims with every major insurance company." }
+  ],
+
+  "closer": {
+    "headline": "Need it looked at *this week*?",
+    "sub": "Call now or send a quick request. We answer fast."
+  },
+
+  "tracking": { "metaPixelId": "" },
+  "credit": true
+}
