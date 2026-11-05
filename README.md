@@ -13,11 +13,11 @@ tools/             build-client.mjs (builds a shop), sync-tokens.mjs (copies tok
 - `agency/index.html`, `agency/agency.css`, `agency/main.js` (3.9KB), `agency/fonts/`. No build step.
 - One offer, one CTA: **Book my free shop audit**. On desktop it scrolls to `#audit` (inline Calendly, lazy-loaded). On phones it opens the Calendly popup. Without JS it falls back to plain Calendly links.
 - `/book` forwards to `/#audit` so old links keep working. `/services` 301s to `/`. `/gyms` uses the old stylesheet (`agency/style.css`) and is linked only in the footer.
-- **Qualifying check:** before the calendar shows, visitors answer 3 questions: on Long Island, can call leads back within an hour, ready for $1,000+/month. Any "no" shows a reason-specific message plus a "Keep me posted" phone/email box (Netlify Forms, form name `later`; turn on email notifications in Netlify → Forms). A pass fires the Pixel's standard `Lead` event and opens Calendly with the answers prefilled as `a1`–`a3`.
+- **Qualifying check:** before the calendar shows, visitors answer 3 questions: on Long Island, can call leads back within an hour, ready for $2,500/month ($1,000 fee + $1,500+ ads). Any "no" shows a reason-specific message plus a "Keep me posted" phone/email box (Netlify Forms, form name `later`; turn on email notifications in Netlify → Forms). A pass fires the Pixel's standard `Lead` event and opens Calendly with the answers prefilled as `a1`–`a3`.
 - **Calendly invitee questions** (Event type → Booking page options → Invitee questions). The first 3 must match this order exactly so the answers prefill:
   1. Is your shop in Nassau or Suffolk County? (Yes / No)
   2. Can someone call new leads back within about an hour during business hours? (Yes / No)
-  3. Are you ready to invest $1,000+ a month to fill your bays? (Yes / No)
+  3. Are you ready to invest $2,500 a month to fill your bays? $1,500+ in ads paid to Meta plus a $1,000 management fee. (Yes / No)
   4. What kind of shop do you run? (one line)
   5. Do you have bay time for 10+ more jobs next month? (Yes / No)
 - `/privacy` is linked in the footer. Have someone read it before the Pixel or lead ads go live.

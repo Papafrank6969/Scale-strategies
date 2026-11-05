@@ -149,6 +149,15 @@ img.avatar { object-fit: cover; }
 .crosses li::before { transform: rotate(45deg); }
 .crosses li::after { transform: rotate(-45deg); }
 
+/* Price */
+.price-box { margin-top: var(--s6); max-width: 560px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: var(--s5); }
+.price-lines { margin-top: var(--s4); display: grid; }
+.price-lines div { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s4); padding: var(--s3) 0; border-bottom: 1px solid var(--border); }
+.price-lines dt { color: var(--muted); }
+.price-lines dd { white-space: nowrap; color: var(--muted); font-variant-numeric: tabular-nums; }
+.price-lines dd strong { color: var(--text); font: 800 1.375rem/1 var(--font-head); }
+.price-note { margin-top: var(--s4); font-weight: 600; }
+
 /* Guarantee: the cream work order */
 .work-order {
   position: relative; max-width: 760px; background: var(--paper); color: var(--paper-ink);
