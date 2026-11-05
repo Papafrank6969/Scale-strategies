@@ -1,0 +1,97 @@
+{
+  "slug": "example-auto",
+  "vertical": "shop",
+  "demo": true,
+
+  "business": {
+    "name": "Example Auto & Collision",
+    "shortName": "Example Auto",
+    "schemaType": "AutoRepair",
+    "phone": "(516) 555-0142",
+    "email": "",
+    "address": { "street": "100 Example Street", "city": "Massapequa", "state": "NY", "zip": "11758" },
+    "mapsQuery": "Massapequa, NY 11758",
+    "googleMapsUrl": "",
+    "googleReviewsUrl": "",
+    "bookingUrl": "",
+    "logo": "",
+    "license": "NYS DMV Repair Shop #REPLACE",
+    "serviceArea": ["Massapequa", "Seaford", "Wantagh", "Amityville", "Farmingdale"]
+  },
+
+  "site": {
+    "url": "",
+    "title": "Brake & Collision Repair in Massapequa, NY | Example Auto & Collision",
+    "description": "Brakes, diagnostics, collision and NYS inspections in Massapequa. Price before work. Call (516) 555-0142 or book online."
+  },
+
+  "theme": { "accent": "#E11D2E", "accentInk": "#FFFFFF" },
+
+  "hero": {
+    "eyebrow": "Massapequa, NY · Repair & collision",
+    "headline": "Brake & collision repair in *Massapequa*.",
+    "sub": "You get a price before we touch your car, and most repairs are back the same or next day.",
+    "image": ""
+  },
+
+  "badges": ["NYS inspection station", "Price before work", "Free collision estimates"],
+
+  "offer": {
+    "label": "This month",
+    "title": "$49 brake inspection",
+    "details": "Squealing, grinding or a soft pedal? We measure your pads and rotors, show you what we find, and give you a straight price.",
+    "cta": "Book the $49 inspection",
+    "fine": "Example offer. Match this word for word to the shop's live Facebook and Instagram ad."
+  },
+
+  "servicesHeadline": "What we *fix*",
+  "services": [
+    { "name": "Brakes", "desc": "Pads, rotors, calipers and brake lines.", "price": "Inspection $49" },
+    { "name": "Check engine & diagnostics", "desc": "We find the real cause before we replace a single part.", "price": "" },
+    { "name": "Collision & body", "desc": "Dents, bumpers and frame work. We handle the insurance paperwork.", "price": "Free estimates" },
+    { "name": "NYS inspections", "desc": "Safety and emissions while you wait.", "price": "" },
+    { "name": "Suspension & steering", "desc": "Shocks, struts, alignments and that clunk over bumps.", "price": "" },
+    { "name": "Oil & maintenance", "desc": "Service on your car's factory schedule.", "price": "" }
+  ],
+
+  "whyHeadline": "Why drivers *come back*",
+  "why": [
+    { "title": "Price before work", "text": "You approve the quote first. No surprise line items at pickup." },
+    { "title": "We show you", "text": "Photos of the worn parts, so you see what we see." },
+    { "title": "Fast turnaround", "text": "Most repairs are back the same or next business day." }
+  ],
+
+  "reviews": {
+    "headline": "What drivers *say*",
+    "rating": "",
+    "count": "",
+    "googleUrl": "",
+    "items": []
+  },
+
+  "bookLabel": "Book an appointment",
+  "form": {
+    "enabled": true,
+    "headline": "Book your *appointment*.",
+    "promise": "Tell us what your car needs. We call you back within an hour during business hours to confirm a time.",
+    "button": "Send my request",
+    "thanks": "Your request went straight to the shop. We call back within an hour during business hours. If it's urgent, call now."
+  },
+
+  "locationHeadline": "Find us in *Massapequa*",
+  "hours": [
+    { "days": "Monday – Friday", "time": "8:00 AM – 6:00 PM", "schema": "Mo-Fr 08:00-18:00" },
+    { "days": "Saturday", "time": "8:00 AM – 2:00 PM", "schema": "Sa 08:00-14:00" },
+    { "days": "Sunday", "time": "Closed", "schema": "" }
+  ],
+
+  "faqHeadline": "Good to *know*",
+  "faq": [
+    { "q": "Do I need an appointment?", "a": "Walk-ins are welcome for inspections. For repairs, call or book online and we'll give you a drop-off time." },
+    { "q": "Will I get a price before you start?", "a": "Always. Nothing gets done until you approve the quote." },
+    { "q": "Do you work with my insurance?", "a": "Yes. We handle collision claims with the major insurance companies." }
+  ],
+
+  "tracking": { "metaPixelId": "" },
+  "credit": true
+}

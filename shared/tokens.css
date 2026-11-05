@@ -1,0 +1,52 @@
+/* Scale Strategies design tokens: the single source of truth.
+   agency/agency.css gets a copy of this block via `node tools/sync-tokens.mjs`.
+   Client builds prepend this file to templates/shop/shop.css automatically.
+
+   THEME OVERRIDE HOOKS: a client theme overrides only --accent, --accent-hover and
+   --accent-ink (injected after this file by the build). The build refuses accents
+   under 3:1 against --bg, or ink under 4.5:1 against the accent. */
+
+@font-face {
+  font-family: "Archivo";
+  src: url("/fonts/archivo-latin-wght.woff2") format("woff2");
+  font-weight: 700 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --bg: #0E1113;            /* graphite page bg, neutral not navy */
+  --surface: #171B1F;       /* cards/sections */
+  --surface-2: #1F252B;     /* raised / FAQ open */
+  --border: #2C343C;        /* decorative dividers only */
+  --border-strong: #7D8794; /* input borders, 5.2:1 vs bg */
+  --text: #F3F4F6;          /* 17.2:1 on bg */
+  --muted: #A7B0BA;         /* 8.6:1 on bg */
+  --accent: #FFB000;        /* safety amber, CTA ONLY (+ guarantee number) */
+  --accent-hover: #FFC233;
+  --accent-ink: #111111;    /* text on amber, 10.3:1 */
+  --paper: #F5F1E8;         /* guarantee "work order" card */
+  --paper-ink: #15181B;     /* 15.8:1 on paper */
+  --paper-muted: #5B5F66;   /* 5.7:1 on paper */
+  --stamp: #B4321F;         /* "GUARANTEED" stamp/rule on paper only, 5.45:1 */
+  --ok: #34D399;            /* checkmarks on dark, sparingly */
+  --ok-on-paper: #1F7A4D;
+  --radius-btn: 10px;
+  --radius-card: 14px;
+
+  /* Type */
+  --font-head: "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --fs-h1: clamp(2.25rem, 1.4rem + 4.2vw, 3.75rem);
+  --fs-h2: clamp(1.75rem, 1.3rem + 2vw, 2.5rem);
+  --fs-h3: 1.25rem;
+  --fs-lead: clamp(1.125rem, 1.05rem + .35vw, 1.25rem);
+  --fs-body: 1.0625rem;
+  --fs-small: .875rem;
+
+  /* 8-pt spacing */
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px; --s6: 32px; --s7: 48px; --s8: 64px; --s9: 96px;
+  --container: 1120px;
+  --prose: 65ch;
+}

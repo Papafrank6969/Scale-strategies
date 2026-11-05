@@ -1,55 +1,48 @@
 # Scale Strategies
 
-Two things live in this repo:
-
-1. **`site/`**: the agency site, tryscalestrategies.com. Hand-coded static HTML/CSS on Netlify, built around one offer:
-   *10+ booked jobs from Facebook & Instagram in 30 days for Long Island auto shops, or month 2 is free.*
-2. **`templates/` + `clients/`**: a reusable site template for client shops. Each shop is one JSON file. No rebuild, just a content swap.
-
-## Agency site (`site/`)
-
-| Page | Job |
-|---|---|
-| `/` | Sells the one offer. Every CTA says "Book a free shop audit" and goes to `/book`. |
-| `/book` | Calendly embed (`calendly.com/frank-tryscalestrategies`) plus email and Instagram backups. |
-| `/gyms` | The gym lead follow-up product. Linked only from the footer so it doesn't dilute the homepage. |
-| `/services` | Gone. `site/_redirects` 301s it to `/`. |
-
-`netlify.toml` publishes `site/` with no build step. Connect this repo to the existing Netlify site, or drag `site/` into Netlify.
-
-**Before you deploy:** `/gyms` links to `/demo`, which isn't in this repo. Copy `demo.html` (and any script it uses) from the current Netlify source into `site/`, or that button 404s. Its CSS classes are already in `site/style.css`.
-
-**No fake proof, by rule.** When a real shop gets real results, add them to the founder section on `/` ("Results from Long Island shops will go here"). Only real numbers, only with the shop's permission.
-
-## Client sites
-
-```bash
-node tools/build-client.mjs clients/<slug>.json            # build dist/<slug>/
-node tools/build-client.mjs clients/<slug>.json --strict   # pre-launch check: fails on placeholders
-node tools/build-client.mjs --all                          # build every client
+```
+agency/            tryscalestrategies.com: the single-offer homepage. Netlify serves this folder as-is.
+templates/shop/    client site template: render.mjs (markup), shop.css (styles), content.json (demo shop)
+shared/tokens.css  design tokens + Archivo font, shared by both
+clients/           one JSON file per real client shop
+tools/             build-client.mjs (builds a shop), sync-tokens.mjs (copies tokens into agency/)
 ```
 
-Zero dependencies, just Node 18+. Output is plain static files in `dist/<slug>/`.
+## Agency site
 
-### New shop in 6 steps
+- `agency/index.html`, `agency/agency.css`, `agency/main.js` (3.9KB), `agency/fonts/`. No build step.
+- One offer, one CTA: **Book my free shop audit**. On desktop it scrolls to `#audit` (inline Calendly, lazy-loaded). On phones it opens the Calendly popup. Without JS it falls back to plain Calendly links.
+- `/book` forwards to `/#audit` so old links keep working. `/services` 301s to `/`. `/gyms` uses the old stylesheet (`agency/style.css`) and is linked only in the footer.
+- Fill in every `TODO(Frank)`: `grep -rn "TODO(Frank)" agency/`
+- **Changing colors or type?** Edit `shared/tokens.css`, then run `node tools/sync-tokens.mjs`. Don't edit the tokens block inside `agency/agency.css` by hand.
+- Before deploying, copy your existing `demo.html` into `agency/` (the gyms page links to `/demo`). It already works with `agency/style.css`.
 
-1. Copy `clients/example-auto.json` to `clients/<shop-slug>.json`.
-2. Fill it in: name, phone, address, hours, services, theme colors, the offer from their ad. Wrap a word in `*stars*` to make it the accent color in a headline.
-3. Photos go in `clients/<shop-slug>/` and are referenced as `/img/<file>` (for example `"hero": { "image": "/img/bay.jpg" }`).
-4. Reviews: paste **real** Google reviews only, word for word. No reviews yet? Leave `items` empty and set `googleUrl`, or the section hides itself.
-5. Set `"demo": false`, `site.url`, and `tracking.metaPixelId`, then run with `--strict` until it passes.
-6. Deploy: `npx netlify deploy --dir dist/<shop-slug> --prod` (or drag the folder into Netlify) as **its own** Netlify site, then point the shop's domain at it.
+Netlify: `netlify.toml` publishes `agency/`. Connect this repo to the existing site, or drag the `agency/` folder in.
 
-### What every client site gets
+## New client shop in 15 minutes
 
-- Tap-to-call everywhere, and a bottom dock on phones: **Call · Quote/Book · Directions**
-- Ad offer block that matches the Facebook/Instagram ad (same promise, same words)
-- Quote form via **Netlify Forms** (`name="quote"`). Turn on email notifications to the shop in Netlify → Forms so leads get answered inside the hour.
-- Reviews, hours, address, Google Map, directions link, FAQ
-- `AutoRepair` schema.org markup for local SEO (no self-served star ratings, on purpose)
-- Meta Pixel when `metaPixelId` is set: `PageView`, `Contact` on call taps, `Lead` on the thanks page
-- `bookingUrl` set (Tekmetric, Shopmonkey, Calendly...)? "Get a free quote" becomes "Book online".
+You need: the shop's name, phone, address, hours, services, brand color, the offer from their ad, and their Meta Pixel ID.
 
-### Changing the design
+1. **Copy the demo** (1 min)
+   `cp templates/shop/content.json clients/main-st-auto.json`
+2. **Fill in the content** (8 min). In that file:
+   - `slug`: lowercase with dashes, e.g. `main-st-auto`
+   - `business`: name, phone, address, license, towns served
+   - `hero.headline`: service + town, e.g. `"Brake & collision repair in *Massapequa*."` (`*stars*` = accent color)
+   - `offer`: copy the live ad's offer **word for word**, so the page says what the ad promised
+   - `services`, `hours` (keep the `schema` strings, e.g. `"Mo-Fr 08:00-18:00"`), `faq`
+   - `theme.accent`: the shop's brand color as a 6-digit hex. The build rejects it if it isn't readable (it needs 3:1 against the page and 4.5:1 for the button text) and tells you what to change.
+   - `bookingUrl`: their online booking link if they have one. Otherwise the "Book" buttons go to the request form on the page.
+   - `reviews.items`: **real Google reviews only, pasted word for word.** Leave it empty and the section stays hidden.
+   - `site.url`, `tracking.metaPixelId`, and set `"demo": false`
+3. **Photos** (2 min, optional): put them in `clients/main-st-auto/` and reference them as `/img/bay.jpg`. Use WebP, under 200KB.
+4. **Build and check** (2 min)
+   `node tools/build-client.mjs clients/main-st-auto.json --strict`
+   `--strict` fails while any `REPLACE`/`TODO` text, demo mode, or a missing pixel/URL is left. Fix until it passes.
+5. **Deploy** (2 min)
+   `npx netlify deploy --dir dist/main-st-auto --prod` as its **own** Netlify site, then point the shop's domain at it.
+   In Netlify → Forms, turn on email notifications for the `booking` form and send them to the shop, so leads get answered inside the hour.
 
-Design lives in `templates/auto-shop/render.mjs` (markup) and `templates/auto-shop/style.css`. Change it once and rebuild with `--all`; every shop gets the update. Gyms come later as `templates/gym/`, selected with `"vertical": "gym"` in the JSON.
+Every shop site gets tap-to-call, a sticky Call / Book bar on phones, the ad offer, services, a booking request form (Netlify Forms), a reviews slot, hours, a Google map and directions, FAQ, `AutoRepair` schema, and Meta Pixel events (`PageView`, `Contact` on call taps, `Lead` on the thanks page).
+
+Change the design once in `templates/shop/` and run `node tools/build-client.mjs --all` to rebuild every shop. Gyms come later as a second template with `"vertical": "gym"`.

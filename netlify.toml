@@ -1,8 +1,8 @@
-# Agency site (tryscalestrategies.com). Static, no build step.
+# Agency site (tryscalestrategies.com). Static, no build step: agency/ is served as-is.
 # Client sites are NOT deployed from here. Build them with tools/build-client.mjs
 # and deploy each dist/<slug> folder to its own Netlify site (see README).
 [build]
-  publish = "site"
+  publish = "agency"
   command = ""
 
 [[headers]]
@@ -10,3 +10,8 @@
   [headers.values]
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

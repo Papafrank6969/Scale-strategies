@@ -215,7 +215,7 @@ section { padding: 88px 0; border-top: 1px solid var(--line); }
 /* Gyms page */
 .thread-wrap { position: relative; max-width: 380px; width: 100%; justify-self: end; }
 .thread { background: var(--text); border-radius: 24px; padding: 22px; font-size: 14px; line-height: 1.45; box-shadow: 0 24px 60px rgba(15, 23, 42, .25); }
-.thread .t { color: #64748B; font-size: 11px; margin: 14px 0 4px; font-variant-numeric: tabular-nums; }
+.thread .t { color: #94A3B8; font-size: 11px; margin: 14px 0 4px; font-variant-numeric: tabular-nums; }
 .thread .t:first-child { margin-top: 0; }
 .msg { border-radius: 14px; padding: 9px 12px; }
 .msg.sys { background: rgba(129, 140, 248, .16); color: #C7D2FE; }
