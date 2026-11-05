@@ -60,6 +60,7 @@
 /* Base */
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; padding: 0; }
+[hidden] { display: none !important; }
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
 body { background: var(--bg); color: var(--text); font: 400 var(--fs-body)/1.6 var(--font-body); -webkit-font-smoothing: antialiased; }
@@ -193,6 +194,10 @@ img.avatar { object-fit: cover; }
 .report thead th { font-size: var(--fs-small); color: var(--muted); font-weight: 600; }
 .report tbody tr:last-child > * { border-bottom: 0; }
 .report td:last-child, .report th:last-child { text-align: right; }
+.report td { white-space: nowrap; }
+.status { color: var(--muted); font-weight: 600; }
+.status.booked { color: var(--ok); }
+.report-foot { padding: var(--s4) var(--s5); border-top: 1px solid var(--border); font-size: var(--fs-small); color: var(--muted); }
 
 /* Fit */
 .fit { display: grid; gap: var(--s4); }
@@ -221,6 +226,15 @@ img.avatar { object-fit: cover; }
 .audit-sub { color: var(--muted); margin: var(--s5) 0 var(--s4); }
 .fallback { margin-top: var(--s4); font-size: var(--fs-small); color: var(--muted); }
 .fallback a, .linkish { color: var(--text); }
+.hp { position: absolute; left: -9999px; }
+.btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border-strong); }
+.btn-outline:hover { background: var(--surface-2); }
+.later { display: grid; gap: var(--s3); margin-top: var(--s5); }
+.later label { font-weight: 600; }
+.later-row { display: flex; flex-wrap: wrap; gap: var(--s2); }
+.later input { flex: 1 1 200px; min-height: 52px; font: 400 1rem/1.4 var(--font-body); color: var(--text); background: var(--bg); border: 1px solid var(--border-strong); border-radius: var(--radius-btn); padding: 12px 14px; }
+.later input::placeholder { color: var(--muted); }
+.later-done { margin-top: var(--s5); color: var(--text) !important; font-weight: 600; }
 .linkish { background: none; border: 0; padding: 0; font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 
 /* Qualifying questions */
@@ -239,7 +253,7 @@ img.avatar { object-fit: cover; }
 }
 .opts label:has(input:checked) { background: var(--surface-2); border-color: var(--text); }
 .opts input { width: 18px; height: 18px; accent-color: var(--text); margin: 0; }
-.qualify fieldset[aria-invalid="true"] legend { text-decoration: underline wavy #F87171; text-underline-offset: 6px; }
+.qualify fieldset.missing legend { text-decoration: underline wavy #F87171; text-underline-offset: 6px; }
 .q-error { color: #FCA5A5; font-weight: 600; }
 .q-result h3 { margin-bottom: var(--s4); }
 .q-result h3:focus { outline: none; }
@@ -258,6 +272,7 @@ img.avatar { object-fit: cover; }
 .footer-row { display: flex; flex-wrap: wrap; gap: var(--s3) var(--s5); align-items: center; }
 .footer a { color: var(--text); }
 .footer .quiet { color: var(--muted); margin-left: auto; }
+.footer .quiet-2 { color: var(--muted); }
 
 /* Sticky mobile CTA (shown by main.js after the hero CTA scrolls away) */
 .sticky { display: none; }

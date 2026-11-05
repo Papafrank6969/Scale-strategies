@@ -6,7 +6,7 @@
   const $ = (s) => document.querySelector(s);
   const store = { get: (k) => { try { return JSON.parse(sessionStorage.getItem(k)); } catch { return null; } }, set: (k, v) => { try { sessionStorage.setItem(k, JSON.stringify(v)); } catch {} } };
 
-  // Calendly URL: UTMs from this page + the qualifying answers as a1-a5 (match the Calendly question order).
+  // Calendly URL: UTMs from this page + the qualifying answers as a1-a3 (match the Calendly question order).
   const here = new URLSearchParams(location.search);
   const calUrl = (answers) => {
     const p = new URLSearchParams({ hide_gdpr_banner: '1' });
@@ -26,17 +26,17 @@
     }
     return calPromise ||= new Promise((res, rej) => {
       const s = Object.assign(document.createElement('script'), { src: 'https://assets.calendly.com/assets/external/widget.js', async: true });
-      s.onload = () => (window.Calendly ? res(window.Calendly) : rej());
-      s.onerror = rej;
+      const t = setTimeout(rej, 6000);
+      s.onload = () => { clearTimeout(t); window.Calendly ? res(window.Calendly) : rej(); };
+      s.onerror = () => { clearTimeout(t); rej(); };
       document.head.append(s);
-      setTimeout(rej, 6000);
     });
   };
   const popup = (answers) => loadCal(true).then((C) => C.initPopupWidget({ url: calUrl(answers) })).catch(() => { location.href = calUrl(answers); });
 
   // Qualifying form
-  const form = $('#qualify'), yes = $('#q-yes'), no = $('#q-no'), inline = $('#cal-inline'), err = form && form.querySelector('.q-error');
-  const QUESTIONS = ['shop', 'li', 'room', 'speed', 'budget'];
+  const form = $('#qualify'), yes = $('#q-yes'), no = $('#q-no'), later = $('#later'), inline = $('#cal-inline'), err = form && form.querySelector('.q-error');
+  const QUESTIONS = ['li', 'speed', 'budget'];
   const LABELS = { yes: 'Yes', no: 'No' };
   let inlineDone = false;
 
@@ -53,14 +53,14 @@
   };
 
   if (form) {
-    form.addEventListener('change', () => { err.hidden = true; form.querySelectorAll('fieldset').forEach((f) => f.removeAttribute('aria-invalid')); });
+    form.addEventListener('change', () => { err.hidden = true; form.querySelectorAll('fieldset').forEach((f) => { f.classList.remove('missing'); f.removeAttribute('aria-describedby'); }); });
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const data = new FormData(form);
       const missing = QUESTIONS.filter((q) => !data.get(q));
       if (missing.length) {
-        missing.forEach((q) => form.querySelector(`[name="${q}"]`).closest('fieldset').setAttribute('aria-invalid', 'true'));
-        err.textContent = `Answer all 5 to see open times (${missing.length} left).`;
+        missing.forEach((q) => { const f = form.querySelector(`[name="${q}"]`).closest('fieldset'); f.classList.add('missing'); f.setAttribute('aria-describedby', 'q-error'); });
+        err.textContent = `Answer all ${QUESTIONS.length} to see open times (${missing.length} left).`;
         err.hidden = false;
         form.querySelector(`[name="${missing[0]}"]`).focus();
         return;
@@ -69,15 +69,27 @@
       if (fail) {
         form.hidden = true; no.hidden = false;
         no.querySelectorAll('[data-msg]').forEach((p) => { p.hidden = p.dataset.msg !== fail.dataset.no; });
+        later.elements.reason.value = fail.dataset.no;
         no.querySelector('h3').focus();
         return;
       }
       const answers = QUESTIONS.map((q) => LABELS[data.get(q)] || data.get(q));
       store.set('ss-qualified', answers);
-      if (window.fbq) fbq('trackCustom', 'QualifiedForAudit');
+      if (window.fbq) fbq('track', 'Lead');
       showYes(answers, true);
     });
     $('#q-back').addEventListener('click', () => { no.hidden = true; form.hidden = false; form.querySelector('input').focus(); });
+
+    // "Not a fit" isn't a dead end: capture a phone/email via Netlify Forms.
+    later.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const done = $('#later-done'), btn = later.querySelector('button');
+      if (!later.elements.contact.value.trim()) return later.elements.contact.focus();
+      btn.disabled = true;
+      fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(new FormData(later)) })
+        .then((r) => { if (!r.ok) throw 0; later.hidden = true; done.hidden = false; })
+        .catch(() => { btn.disabled = false; done.hidden = false; done.textContent = "That didn't send. Email frank@tryscalestrategies.com instead."; });
+    });
     const saved = store.get('ss-qualified');
     if (Array.isArray(saved)) { form.hidden = true; yes.hidden = false; setLinks(saved); if (desktop.matches) showYes(saved, false, false); }
   }
